@@ -8,20 +8,20 @@ router.get("/", (req, res) => {
 
 //GET ALL
 router.get("/api/productos", async (req, res) => {
-  const lista = new Contenedor("archivo.txt");
+  const lista = new Contenedor("archivo.json");
   const response = await lista.getAll();
   res.json(response);
 });
 
 //GET BY ID
 router.get("/api/productos/:id", async (req, res) => {
-  const lista = new Contenedor("archivo.txt");
+  const lista = new Contenedor("archivo.json");
   const response = await lista.getByID(Number(req.params.id));
   await res.json(response);
 });
 //POST
 router.post("/api/productos", async (req, res) => {
-  const lista = new Contenedor("archivo.txt");
+  const lista = new Contenedor("archivo.json");
 
   const response = await lista.save(req.body);
   await res.json(response);
@@ -30,16 +30,13 @@ router.post("/api/productos", async (req, res) => {
 // PUT BY ID
 
 router.put("/api/productos/:id", async (req, res) => {
-  const lista = new Contenedor("archivo.txt");
+  const lista = new Contenedor("archivo.json");
   const response = await lista.getAll();
   console.log(typeof response);
 
   const anterior = await lista.getByID(Number(req.params.id));
 
   const nuevo = await lista.updateById(Number(req.params.id), req.body);
-
-  console.log(typeof anterior);
-  console.log(typeof nuevo);
 
   if (anterior) {
     res.json({ anterior, nuevo });
@@ -166,7 +163,6 @@ class Contenedor {
 
       lista[index] = producto;
       const nuevaListaJson = this.stringifiar(lista);
-      console.log(typeof producto);
       await this.saveTxt(nuevaListaJson);
 
       return producto;
@@ -176,7 +172,7 @@ class Contenedor {
   };
 }
 async function getRandomItem() {
-  fs.readFile("archivo.txt", "utf-8", (err, data) => {
+  fs.readFile("archivo.json", "utf-8", (err, data) => {
     if (err) {
       console.log("error: ", err);
     } else {
