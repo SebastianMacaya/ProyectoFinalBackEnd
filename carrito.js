@@ -28,6 +28,11 @@ class Carrito {
     await fs.promises.writeFile("./carrito.json", JSON.stringify(result));
     res.json({ nota: `Fue borrado el carrito id : ${id}` });
   }
+  async buscarCarritoPorId(req, res) {
+    let id = Number(req.params.id);
+    let text = this.carritos.find((val) => id == val.id);
+    return res.json(text ? text : { error: "Carrito no encontrado" });
+  }
 }
 
 module.exports = Carrito;

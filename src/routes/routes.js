@@ -27,5 +27,9 @@ router.delete(
   auth,
   carrito.borrarCarritoPorId.bind(carrito)
 );
+router.get(
+  "/api/carrito/:id/productos",
+  carrito.buscarCarritoPorId.bind(carrito)
+);
 
 module.exports = router;
