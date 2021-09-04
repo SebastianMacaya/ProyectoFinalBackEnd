@@ -9,11 +9,21 @@
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
       crossorigin="anonymous"
     />
-    <title>desafio 04</title>
+    <title>Proyecto Final</title>
   </head>
   <body>
     <div class="container">
       <form role="form" action="/api/productos" method="POST">
+        <div class="form-group">
+          <label for="Nombre Producto">Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            id="user"
+            name="user"
+            required
+          />
+        </div>
         <div class="form-group">
           <label for="Nombre Producto">Nombre Producto:</label>
           <input

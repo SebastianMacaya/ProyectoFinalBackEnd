@@ -11,9 +11,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(routes);
 
-app.use("/static", express.static(__dirname + "/public"));
+app.use("/static", express.static(__dirname + "/index.html"));
 app.use(express.static("public"));
 
+//404 Route (default)
+app.get("*", function (req, res) {
+  res
+    .status(404)
+    .send(
+      `{Error: -2, descripcion ruta : ${req.path} metodo : ${req.method} no implementada}`
+    );
+});
 app.listen(PORT, () => {
   console.log("Server on localhost:" + PORT);
 });
