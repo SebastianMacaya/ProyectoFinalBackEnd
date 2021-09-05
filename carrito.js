@@ -8,9 +8,9 @@ class Carrito {
     );
   }
   async crearCarrito(req, res) {
-    console.log(this);
     const nuevoCarrito = {};
     nuevoCarrito.id = this.carritos.length + 1;
+    nuevoCarrito.productos = [];
     this.carritos.push(nuevoCarrito);
     await fs.promises.writeFile(
       "./carrito.json",
@@ -21,6 +21,7 @@ class Carrito {
       status: `Fue creado el carrito su id es ${nuevoCarrito.id}`,
     });
   }
+
   async borrarCarritoPorId(req, res) {
     const id = Number(req.params.id);
     const result = this.carritos.filter((carrito) => carrito.id !== id);

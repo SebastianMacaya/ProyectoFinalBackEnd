@@ -1,11 +1,23 @@
 [
     {
-        "id": 1
+        "id": 1,
+        "productos": []
     },
     {
-        "id": 2
-    },
-    {
-        "id": 3
+        "id": 2,
+        "productos": [
+            {
+                "title": "mochila",
+                "price": "22",
+                "url": "https://cdn3.iconfinder.com/data/icons/spring-2-1/30/Backpack-128.png",
+                "id": 10
+            },
+            {
+                "title": "mochila",
+                "price": "22",
+                "url": "https://cdn3.iconfinder.com/data/icons/spring-2-1/30/Backpack-128.png",
+                "id": 10
+            }
+        ]
     }
 ]

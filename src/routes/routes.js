@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const { Router, text } = require("express");
 const router = Router();
 const Products = require("../../products");
 const Carrito = require("../../carrito");
@@ -22,14 +22,11 @@ router.get("/api/productos/:id", Products.findById);
 
 //Routes Carrito
 router.post("/api/carrito", carrito.crearCarrito.bind(carrito));
-router.delete(
-  "/api/carrito/:id",
-  auth,
-  carrito.borrarCarritoPorId.bind(carrito)
-);
+router.delete("/api/carrito/:id", carrito.borrarCarritoPorId.bind(carrito));
 router.get(
   "/api/carrito/:id/productos",
   carrito.buscarCarritoPorId.bind(carrito)
 );
 
+router.post("/api/carrito/:id/productos", Products.insertarProductoEnCarrito);
 module.exports = router;
