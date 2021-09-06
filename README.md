@@ -24,4 +24,4 @@ DELETE:
 GET:
 /api/carrito/:id/productos "Muestra carrito por iD"
 POST:
-/api/carrito/:id/productos "Inserta producto en carrito(necesita el id del producto)"
+/api/carrito/:id/productos "Inserta producto en carrito(necesita el id del producto Ej: "id":1 (agrega el producto 1))"
