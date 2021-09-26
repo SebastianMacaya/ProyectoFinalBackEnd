@@ -1,15 +1,20 @@
 import Services from "./all.services.js";
-
 class ProductServices extends Services {
   constructor(model) {
     super(model);
   }
+
   getProducts = async () => await this.getAll();
-  getProductsById = async (id) => await this.getById(id);
+
+  getProductById = async (id) => await this.getById(id);
+
   createProduct = async (product) => await this.createDocument(product);
+
   deleteProductById = async (id) => await this.deleteById(id);
+
   updateProductById = async (id, product) => {
     const { title, description, price, stock, thumbnail } = product;
+
     try {
       await this.model.findByIdAndUpdate(id, {
         title,
@@ -18,7 +23,9 @@ class ProductServices extends Services {
         stock,
         thumbnail,
       });
-      const updated = await productModel.findById(id);
+
+      const updated = await this.model.findById(id);
+
       return updated;
     } catch (error) {
       console.log(error);

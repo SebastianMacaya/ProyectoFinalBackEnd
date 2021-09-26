@@ -55,7 +55,7 @@ export const deleteCartById = async (req, res) => {
 export const addProductToCart = async (req, res) => {
   const { cartId, productId } = req.params;
   try {
-    const newProduct = await productServices.getProductsById(productId);
+    const newProduct = await productServices.getProductById(productId);
     const addedProduct = await cartServices.addProduct(cartId, newProduct);
     if (addedProduct) {
       res.status(200).send(`Producto agregado al carrito: ${addedProduct}`);
@@ -84,6 +84,17 @@ export const getProductsInCart = async (req, res) => {
 export const deleteProductFromCart = async (req, res) => {
   const { cartId } = req.params;
 
-  if (cartId) {
+  const productId = req.params.id;
+  try {
+    const borrado = await cartServices.getCartById(cartId);
+    const productsById = await cartServices.deleteProduct(borrado, productId);
+
+    if (borrado) {
+      res.status(200).send({ borrado });
+    } else {
+      res.send("el producto no existe");
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
